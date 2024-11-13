@@ -280,6 +280,7 @@ if ($_SESSION['im_roleId'] == "17") {
     $mn_Maccount = "hidden";
     $mn_report = "";
     $mn_report1 = "";
+    $mn_paymentByMonthAll = "";
 }
 
 $roleId = (int) $_SESSION['im_roleId'];
@@ -624,36 +625,27 @@ echo "<script>console.log('roleId: $roleId');</script>";
                                         </li>
                                     </ul>
                                 </li>
-                            <?php }
+                            <?php
+
+                            }
                             ?>
 
                             <?php if ($roleId <= 1 || $roleId == 17) { ?>
                                 <li class="nav-item">
                                     <a href="index.php?d=report/paymentByMonthAll"
                                         class="nav-link <?= $mn_paymentByMonthAll ?>">
-                                        <!-- <i class="far fa-circle nav-icon"></i> -->
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <p class="mn_payment_staff">Payment-Staff</p>
-                                        <!-- ການຈ່າຍ-ເງິນນະໂຍບາຍ -->
                                     </a>
                                 </li>
-                            <?php }
+                                <?php
+                                //echo "<script>console.log('roleId22222222333333: $roleId');</script>";
+                            }
                             ?>
-
-                            <li class="nav-item">
-                                <a href="index.php?d=report/paymentByMonthAll"
-                                    class="nav-link <?= $mn_paymentByMonthAll ?>">
-                                    <!-- <i class="far fa-circle nav-icon"></i> -->
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <p class="mn_payment_staff">Payment-Staff</p>
-                                    <!-- ການຈ່າຍ-ເງິນນະໂຍບາຍ -->
-                                </a>
-                            </li>
-
                         </ul>
-
                     </li>
-                <?php } ?>
+                <?php
+                } ?>
             </ul>
 
         </nav>
