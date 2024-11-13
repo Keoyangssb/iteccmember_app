@@ -275,12 +275,14 @@ if ($_GET['d'] == 'index') {
     $mn_pbalanceByMonthReport = "active";
 }
 
-if($_SESSION['im_roleId'] == "17"){ 
+if ($_SESSION['im_roleId'] == "17") {
     $mn_MWallet = "hidden";
     $mn_Maccount = "hidden";
+    $mn_report = "";
+    $mn_report1 = "";
 }
 
-$roleId = $_SESSION['im_roleId'];
+$roleId = (int) $_SESSION['im_roleId'];
 echo "<script>console.log('roleId: $roleId');</script>";
 ?>
 <!-- Main Sidebar Container -->
@@ -319,8 +321,8 @@ echo "<script>console.log('roleId: $roleId');</script>";
                     </a>
                 </li>
 
-                <?php if ($roleId >= "1") { ?>
-                    <?php if ($roleId <= "1") { ?>
+                <?php if ($roleId >= 1) { ?>
+                    <?php if ($roleId <= 1) { ?>
                         <li class="nav-item has-treeview <?= $mn_master ?>">
                             <a href="#" class="nav-link <?= $mn_master1 ?>">
                                 <i class="nav-icon fa fa-layer-group"></i>
@@ -362,7 +364,7 @@ echo "<script>console.log('roleId: $roleId');</script>";
                             <i class="right fas fa-angle-left"></i>
                         </a>
                         <ul class="nav nav-treeview">
-                            <?php if ($roleId <= "1") { ?>
+                            <?php if ($roleId <= 1) { ?>
                                 <li class="nav-item">
                                     <a href="index.php?d=account/allAccount" class="nav-link <?= $mn_allAccount ?>">
                                         <!-- <i class="far fa-circle nav-icon"></i> -->
@@ -371,7 +373,7 @@ echo "<script>console.log('roleId: $roleId');</script>";
                                     </a>
                                 </li>
                             <?php } ?>
-                            <?php if ($roleId <= "1" || $roleId == "4") { ?>
+                            <?php if ($roleId <= 1 || $roleId == 4) { ?>
                                 <li class="nav-item has-treeview <?= $mn_MstaffAccount ?>">
                                     <a href="#" class="nav-link <?= $mn_MstaffAccount1 ?>">
                                         <i class="nav-icon 	far fa-user-circle"></i>
@@ -402,7 +404,7 @@ echo "<script>console.log('roleId: $roleId');</script>";
                                     </ul>
                                 </li>
                             <?php }
-                            if ($roleId <= "1" || $roleId == "5") {
+                            if ($roleId <= 1 || $roleId == 5) {
                                 ?>
                                 <li class="nav-item has-treeview <?= $mn_MpersonalAccount ?>">
                                     <a href="#" class="nav-link <?= $mn_MpersonalAccount1 ?>">
@@ -451,7 +453,7 @@ echo "<script>console.log('roleId: $roleId');</script>";
                             <i class="right fas fa-angle-left"></i>
                         </a>
                         <ul class="nav nav-treeview">
-                            <?php if ($roleId <= "1" || $roleId == "4") { ?>
+                            <?php if ($roleId <= 1 || $roleId == 4) { ?>
                                 <li class="nav-item has-treeview <?= $mn_MstaffWallet ?>">
                                     <a href="#" class="nav-link <?= $mn_MstaffWallet1 ?>">
                                         <i class="nav-icon 	far fa-user-circle"></i>
@@ -482,7 +484,7 @@ echo "<script>console.log('roleId: $roleId');</script>";
                             <?php }
 
                             ?>
-                            <?php if ($roleId <= "1" || $roleId == "5") { ?>
+                            <?php if ($roleId <= 1 || $roleId == 5) { ?>
                                 <li class="nav-item has-treeview <?= $mn_MpersonalWallet ?>">
                                     <a href="#" class="nav-link <?= $mn_MpersonalWallet1 ?>">
                                         <i class="nav-icon fas fa-users"></i>
@@ -510,42 +512,21 @@ echo "<script>console.log('roleId: $roleId');</script>";
                                         </li>
                                     </ul>
                                 </li>
-
                             <?php }
-
                             ?>
-
                         </ul>
-
                     </li>
-                    <!-- <li class="nav-item has-treeview <?= $mn_report ?>">
-                                    <a href="#" class="nav-link <?= $mn_report1 ?>">
-                                        <i class="nav-icon 	fas fa-book"></i>
-                                        <p>
-                                        Report
-                                        <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-
-
-
-
-                                    </ul>
-
-                                    </li> -->
 
                     <li class="nav-item has-treeview <?= $mn_report ?>">
                         <a href="#" class="nav-link <?= $mn_report1 ?>">
                             <i class="nav-icon 	fas fa-book"></i>
                             <p class="mn_report">
                                 Report
-
                             </p>
                             <i class="right fas fa-angle-left"></i>
                         </a>
                         <ul class="nav nav-treeview">
-                            <?php if ($roleId <= "1" || $roleId == "4") { ?>
+                            <?php if ($roleId <= 1 || $roleId == 4) { ?>
                                 <li class="nav-item has-treeview <?= $mn_RstaffWallet ?>">
                                     <a href="#" class="nav-link <?= $mn_RstaffWallet1 ?>">
                                         <i class="nav-icon 	far fa-user-circle"></i>
@@ -595,7 +576,7 @@ echo "<script>console.log('roleId: $roleId');</script>";
                             <?php }
 
                             ?>
-                            <?php if ($roleId <= "1" || $roleId == "5") { ?>
+                            <?php if ($roleId <= 1 || $roleId == 5) { ?>
                                 <li class="nav-item has-treeview <?= $mn_RpersonalWallet ?>">
                                     <a href="#" class="nav-link <?= $mn_RpersonalWallet1 ?>">
                                         <i class="nav-icon fas fa-users"></i>
@@ -646,20 +627,28 @@ echo "<script>console.log('roleId: $roleId');</script>";
                             <?php }
                             ?>
 
-                            <?php if ($roleId == "17" || $roleId != "17") { ?>
+                            <?php if ($roleId <= 1 || $roleId == 17) { ?>
                                 <li class="nav-item">
                                     <a href="index.php?d=report/paymentByMonthAll"
                                         class="nav-link <?= $mn_paymentByMonthAll ?>">
                                         <!-- <i class="far fa-circle nav-icon"></i> -->
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <p class="mn_payment_staff">Payment-Staff</p>
-
                                         <!-- ການຈ່າຍ-ເງິນນະໂຍບາຍ -->
                                     </a>
                                 </li>
                             <?php }
                             ?>
 
+                            <li class="nav-item">
+                                <a href="index.php?d=report/paymentByMonthAll"
+                                    class="nav-link <?= $mn_paymentByMonthAll ?>">
+                                    <!-- <i class="far fa-circle nav-icon"></i> -->
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <p class="mn_payment_staff">Payment-Staff</p>
+                                    <!-- ການຈ່າຍ-ເງິນນະໂຍບາຍ -->
+                                </a>
+                            </li>
 
                         </ul>
 
